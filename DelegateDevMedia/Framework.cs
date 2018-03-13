@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DelegateDevMedia
 {
+    public delegate void PagarEvent(double valor);
     public class Boleto
     {
         public void Pagar(double valor)
@@ -16,12 +13,12 @@ namespace DelegateDevMedia
 
     public class Pedido
     {
-        private Boleto boleto = new Boleto();
+        public event PagarEvent Pagar;
 
         public void Fechar(double valor)
         {
-            //Delegação
-            this.boleto.Pagar(valor);
+            // Delegação
+            this.Pagar(valor);
         }
     }
 }
